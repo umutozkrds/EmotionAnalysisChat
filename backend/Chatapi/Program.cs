@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+builder.WebHost.UseUrls("http://0.0.0.0:5211");
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -15,7 +16,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000")
+            policy.WithOrigins("http://localhost:3000", "http://192.168.1.145:8081")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -40,5 +41,5 @@ app.UseCors("AllowReactApp");
 
 app.UseAuthorization();
 app.MapControllers();
-
+app.MapGet("/", () => "Hello World");
 app.Run();
