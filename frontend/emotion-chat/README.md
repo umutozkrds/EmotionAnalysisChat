@@ -1,74 +1,28 @@
-# Emotion Analysis Chat
+# Frontend - Emotion Chat
 
-A React-based chat interface that analyzes the emotional sentiment of messages in real-time using a backend API.
+React TypeScript tabanlı web uygulaması. Modern, responsive ve karanlık temalı chat arayüzü.
 
-## Features
+### components/
 
-- 💬 Real-time chat interface
-- 🎭 Emotion analysis for each message
-- 📊 Visual emotion display with confidence scores
-- 🎨 Modern, responsive UI with glassmorphism design
-- 🔄 Connection status monitoring
-- 📱 Mobile-friendly responsive design
+- **LoginForm.tsx** - Giriş ve kayıt formu
+- **ChatInterface.tsx** - Ana chat arayüzü
+- **EmotionDisplay.tsx** - Duygu analizi göstergesi
 
-## Getting Started
+### services/
 
-### Prerequisites
+- **api.ts** - Backend API servis katmanı
 
-Make sure the backend API is running on `https://localhost:7193`. The backend should have:
+### LoginForm
 
-- `/api/test` endpoint for connection testing
-- `/api/test/analyze` endpoint for emotion analysis
+- Kullanıcı kayıt ve giriş
+- Gerçek zamanlı nickname kontrolü (kayıt modunda)
+- Form validasyonu
+- Karanlık tema
 
-### Installation
+### ChatInterface
 
-1. Navigate to the project directory:
-
-   ```bash
-   cd frontend/emotion-chat
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-## Usage
-
-1. **Send Messages**: Type your message in the input field and press Enter or click the send button
-2. **View Emotions**: Emotion analysis results appear in the top-right corner with:
-   - Emotion label (Positive, Negative, Neutral)
-   - Confidence score
-   - Visual progress bar
-   - Appropriate emoji
-3. **Message History**: All messages are displayed with their timestamps and emotion analysis results
-
-## API Integration
-
-The app communicates with the backend through:
-
-- **POST** `/api/test/analyze` - Analyzes text emotion
-- **GET** `/api/test` - Tests API connection
-
-## Technologies Used
-
-- React 18 with TypeScript
-- Axios for API communication
-- CSS3 with modern features (backdrop-filter, gradients)
-- Responsive design principles
-
-## Architecture
-
-- `ChatInterface.tsx` - Main chat component with message handling
-- `EmotionDisplay.tsx` - Floating emotion analysis display
-- `api.ts` - API service layer for backend communication
-- Modern CSS with glassmorphism effects and smooth animations
+- Mesaj gönderme ve alma
+- Duygu analizi sonuçları
+- Kullanıcı bilgileri gösterimi
+- Çıkış butonu
+- Bağlantı durumu göstergesi

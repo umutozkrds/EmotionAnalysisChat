@@ -116,7 +116,7 @@ public class UserController : ControllerBase
             return StatusCode(500, new { error = "An error occurred while retrieving user information" });
         }
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
     {
