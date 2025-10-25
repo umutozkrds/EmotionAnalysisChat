@@ -1,9 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8080/api"
-    : "https://emotionanalysischat-5.onrender.com/api";
+const API_BASE_URL = "https://emotionanalysischat-5.onrender.com/api";
 
 export interface AnalyzeRequest {
   text: string;
