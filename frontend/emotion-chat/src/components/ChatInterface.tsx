@@ -103,13 +103,16 @@ const ChatInterface: React.FC = () => {
       <EmotionDisplay emotion={currentEmotion} isAnalyzing={isAnalyzing} />
 
       <div className="chat-header">
-        <h1>Emotion Analysis Chat</h1>
+        <div className="header-left">
+          <img src="/image.png" alt="Logo" className="chat-logo" />
+          <h1>Duygu Analizi Sohbet</h1>
+        </div>
         <div className={`connection-status ${connectionStatus}`}>
           <div className="status-dot"></div>
           <span>
-            {connectionStatus === "checking" && "Checking connection..."}
-            {connectionStatus === "connected" && "Connected"}
-            {connectionStatus === "disconnected" && "Disconnected"}
+            {connectionStatus === "checking" && "Bağlantı kontrol ediliyor..."}
+            {connectionStatus === "connected" && "Bağlı"}
+            {connectionStatus === "disconnected" && "Bağlantı kesildi"}
           </span>
         </div>
       </div>
@@ -118,8 +121,8 @@ const ChatInterface: React.FC = () => {
         {messages.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">💬</div>
-            <h3>Start a conversation</h3>
-            <p>Send a message to see real-time emotion analysis</p>
+            <h3>Sohbete başla</h3>
+            <p>Gerçek zamanlı duygu analizi görmek için mesaj gönder</p>
           </div>
         ) : (
           messages.map((message) => (
@@ -149,7 +152,7 @@ const ChatInterface: React.FC = () => {
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Type your message here..."
+            placeholder="Mesajınızı buraya yazın..."
             className="message-input"
             rows={1}
             disabled={isAnalyzing || connectionStatus === "disconnected"}
@@ -182,10 +185,9 @@ const ChatInterface: React.FC = () => {
         </div>
         {connectionStatus === "disconnected" && (
           <div className="connection-error">
-            Unable to connect to the backend. Please make sure the API is
-            running.
+            Backend'e bağlanılamıyor. Lütfen API'nin çalıştığından emin olun.
             <button onClick={checkConnection} className="retry-button">
-              Retry Connection
+              Bağlantıyı Yeniden Dene
             </button>
           </div>
         )}

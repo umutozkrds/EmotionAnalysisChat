@@ -46,7 +46,7 @@ const EmotionDisplay: React.FC<EmotionDisplayProps> = ({
       <div className="emotion-display analyzing">
         <div className="emotion-header">
           <span className="emotion-emoji">🤔</span>
-          <span className="emotion-label">Analyzing...</span>
+          <span className="emotion-label">Analiz ediliyor...</span>
         </div>
         <div className="loading-spinner"></div>
       </div>
@@ -58,9 +58,9 @@ const EmotionDisplay: React.FC<EmotionDisplayProps> = ({
       <div className="emotion-display empty">
         <div className="emotion-header">
           <span className="emotion-emoji">💭</span>
-          <span className="emotion-label">Send a message</span>
+          <span className="emotion-label">Mesaj gönder</span>
         </div>
-        <p className="emotion-subtitle">to see emotion analysis</p>
+        <p className="emotion-subtitle">duygu analizi görmek için</p>
       </div>
     );
   }
@@ -77,7 +77,7 @@ const EmotionDisplay: React.FC<EmotionDisplayProps> = ({
         </span>
       </div>
       <div className="emotion-score">
-        <div className="score-label">Confidence</div>
+        <div className="score-label">Güven</div>
         <div
           className="score-value"
           style={{ color: getEmotionColor(emotion.label) }}

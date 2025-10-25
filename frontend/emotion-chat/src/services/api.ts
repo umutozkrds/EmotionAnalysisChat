@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const API_BASE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:5211/api" : "/api";
+  process.env.NODE_ENV === "development"
+    ? "https://emotionanalysischat-5.onrender.com/api"
+    : "https://emotionanalysischat-5.onrender.com/api";
 
 export interface AnalyzeRequest {
   text: string;
@@ -31,15 +33,11 @@ class ApiService {
         text: text,
       });
 
-      // The backend returns the raw Gradio response, so we need to parse it
       const data = response.data;
       console.log("Raw response:", data);
 
-      // Handle different response formats
       if (typeof data === "string") {
-        // Check if it's Server-Sent Events format
         if (data.includes("event: complete") && data.includes("data: ")) {
-          // Extract the JSON data from SSE format
           const lines = data.split("\n");
           const dataLine = lines.find((line) => line.startsWith("data: "));
           if (dataLine) {
@@ -50,7 +48,6 @@ class ApiService {
             }
           }
         } else {
-          // Try regular JSON parsing
           const parsed = JSON.parse(data);
           if (parsed.data && parsed.data[0]) {
             return parsed.data[0];
@@ -64,7 +61,6 @@ class ApiService {
         return data[0];
       }
 
-      // Fallback if format is unexpected
       throw new Error("Unexpected response format from emotion analysis");
     } catch (error) {
       console.error("Error analyzing emotion:", error);
