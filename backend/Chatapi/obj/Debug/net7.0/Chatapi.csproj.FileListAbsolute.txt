@@ -63,3 +63,8 @@ C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\obj\D
 C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\obj\Debug\net7.0\Chatapi.pdb
 C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\obj\Debug\net7.0\Chatapi.genruntimeconfig.cache
 C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\obj\Debug\net7.0\ref\Chatapi.dll
+C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\bin\Debug\net7.0\out\web.config
+C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\bin\Debug\net7.0\out\appsettings.Development.json
+C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\bin\Debug\net7.0\out\appsettings.json
+C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\bin\Debug\net7.0\out\Chatapi.deps.json
+C:\Users\umuto\OneDrive\Masaüstü\git\EmotionAnalysisChat\backend\Chatapi\bin\Debug\net7.0\out\Chatapi.runtimeconfig.json

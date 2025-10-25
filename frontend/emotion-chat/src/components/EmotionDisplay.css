@@ -2,15 +2,16 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(30, 30, 30, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   min-width: 200px;
   z-index: 1000;
   transition: all 0.3s ease;
+  color: #ffffff;
 }
 
 .emotion-display:hover {
@@ -34,11 +35,12 @@
   font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
+  color: #ffffff;
 }
 
 .emotion-subtitle {
   font-size: 14px;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.6);
   margin: 0;
   text-align: center;
 }
@@ -52,7 +54,7 @@
 
 .score-label {
   font-size: 14px;
-  color: #64748b;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .score-value {
@@ -63,7 +65,7 @@
 .emotion-bar {
   width: 100%;
   height: 6px;
-  background-color: #e2e8f0;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -75,19 +77,19 @@
 }
 
 .emotion-display.analyzing {
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .emotion-display.empty {
-  background: rgba(148, 163, 184, 0.1);
-  border-color: rgba(148, 163, 184, 0.2);
+  background: rgba(30, 30, 30, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .loading-spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid #e2e8f0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-top: 2px solid #3b82f6;
   border-radius: 50%;
   animation: spin 1s linear infinite;

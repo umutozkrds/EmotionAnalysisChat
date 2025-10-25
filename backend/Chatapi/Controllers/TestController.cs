@@ -37,18 +37,13 @@ public async Task<IActionResult> Analyze([FromBody] AnalyzeRequest request)
         
         var callResult = await callResponse.Content.ReadAsStringAsync();
         
-        // Debug: Log the actual response to see the format
-        Console.WriteLine($"Gradio response: {callResult}");
         
-        // Try to extract event ID from different possible formats
         string? eventId = null;
         
         try
         {
-            // Try parsing as JSON first
             using var doc = JsonDocument.Parse(callResult);
             
-            // Common Gradio response formats to try
             if (doc.RootElement.TryGetProperty("event_id", out var eventIdProp))
             {
                 eventId = eventIdProp.GetString();
@@ -64,7 +59,6 @@ public async Task<IActionResult> Analyze([FromBody] AnalyzeRequest request)
         }
         catch
         {
-            // If JSON parsing fails, maybe it's just a plain string
             eventId = callResult.Trim().Trim('"');
         }
         
@@ -73,13 +67,11 @@ public async Task<IActionResult> Analyze([FromBody] AnalyzeRequest request)
             return BadRequest($"No event ID received. Response was: {callResult}");
         }
         
-        // Step 2: GET the result using event ID
         var resultUrl = $"https://umutt000-ai-sentiment-service.hf.space/gradio_api/call/predict/{eventId}";
         
-        // Poll for result (Gradio might need a moment to process)
-        for (int i = 0; i < 20; i++) // Try up to 20 times
+        for (int i = 0; i < 20; i++) 
         {
-            await Task.Delay(1000); // Wait 1 second between attempts
+            await Task.Delay(1000); 
             
             var resultResponse = await client.GetAsync(resultUrl);
             
@@ -87,7 +79,6 @@ public async Task<IActionResult> Analyze([FromBody] AnalyzeRequest request)
             {
                 var result = await resultResponse.Content.ReadAsStringAsync();
                 
-                // Check if we got actual data (not just status)
                 if (!string.IsNullOrEmpty(result) && !result.Contains("\"msg\": \"estimation\""))
                 {
                     return Ok(result);

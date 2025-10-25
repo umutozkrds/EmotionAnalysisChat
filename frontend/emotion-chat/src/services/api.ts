@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL =
   process.env.NODE_ENV === "development"
-    ? "https://emotionanalysischat-5.onrender.com/api"
+    ? "http://localhost:8080/api"
     : "https://emotionanalysischat-5.onrender.com/api";
 
 export interface AnalyzeRequest {
@@ -12,6 +12,16 @@ export interface AnalyzeRequest {
 export interface EmotionResult {
   label: string;
   score: number;
+}
+
+export interface User {
+  id: number;
+  nickname: string;
+  createdAt: string;
+}
+
+export interface RegisterRequest {
+  nickname: string;
 }
 
 class ApiService {
@@ -75,6 +85,67 @@ class ApiService {
     } catch (error) {
       console.error("Error testing connection:", error);
       return false;
+    }
+  }
+
+  // User Registration Methods
+  async registerUser(nickname: string): Promise<User> {
+    try {
+      const response = await this.axiosInstance.post<User>("/User/register", {
+        nickname,
+      });
+      return response.data;
+    } catch (error: any) {
+      console.error("Error registering user:", error);
+      throw new Error(error.response?.data?.error || "Failed to register user");
+    }
+  }
+
+  async loginUser(nickname: string): Promise<User> {
+    try {
+      const response = await this.axiosInstance.get<User>(
+        `/User/login/${encodeURIComponent(nickname)}`
+      );
+      return response.data;
+    } catch (error: any) {
+      console.error("Error logging in user:", error);
+      throw new Error(error.response?.data?.error || "Failed to login user");
+    }
+  }
+
+  async checkNicknameAvailability(nickname: string): Promise<{
+    available: boolean;
+    nickname: string;
+    message: string;
+  }> {
+    try {
+      const response = await this.axiosInstance.get(
+        `/User/check-availability/${encodeURIComponent(nickname)}`
+      );
+      return response.data;
+    } catch (error: any) {
+      console.error("Error checking nickname availability:", error);
+      throw new Error("Failed to check nickname availability");
+    }
+  }
+
+  async getUser(userId: number): Promise<User> {
+    try {
+      const response = await this.axiosInstance.get<User>(`/User/${userId}`);
+      return response.data;
+    } catch (error: any) {
+      console.error("Error getting user:", error);
+      throw new Error(error.response?.data?.error || "Failed to get user");
+    }
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    try {
+      const response = await this.axiosInstance.get<User[]>("/User");
+      return response.data;
+    } catch (error: any) {
+      console.error("Error getting all users:", error);
+      throw new Error("Failed to get users");
     }
   }
 }

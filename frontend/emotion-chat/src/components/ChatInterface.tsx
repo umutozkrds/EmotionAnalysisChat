@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { apiService, EmotionResult } from "../services/api";
+import { apiService, EmotionResult, User } from "../services/api";
 import EmotionDisplay from "./EmotionDisplay";
 import "./ChatInterface.css";
 
@@ -10,7 +10,12 @@ interface Message {
   emotion?: EmotionResult;
 }
 
-const ChatInterface: React.FC = () => {
+interface ChatInterfaceProps {
+  user: User;
+  onLogout: () => void;
+}
+
+const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onLogout }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -105,15 +110,43 @@ const ChatInterface: React.FC = () => {
       <div className="chat-header">
         <div className="header-left">
           <img src="/image.png" alt="Logo" className="chat-logo" />
-          <h1>Duygu Analizi Sohbet</h1>
+          <div className="header-info">
+            <h1>Duygu Analizi Sohbet</h1>
+            <div className="user-info">
+              <span className="user-avatar">
+                {user.nickname.charAt(0).toUpperCase()}
+              </span>
+              <span className="user-name">{user.nickname}</span>
+            </div>
+          </div>
         </div>
-        <div className={`connection-status ${connectionStatus}`}>
-          <div className="status-dot"></div>
-          <span>
-            {connectionStatus === "checking" && "Bağlantı kontrol ediliyor..."}
-            {connectionStatus === "connected" && "Bağlı"}
-            {connectionStatus === "disconnected" && "Bağlantı kesildi"}
-          </span>
+        <div className="header-right">
+          <div className={`connection-status ${connectionStatus}`}>
+            <div className="status-dot"></div>
+            <span>
+              {connectionStatus === "checking" &&
+                "Bağlantı kontrol ediliyor..."}
+              {connectionStatus === "connected" && "Bağlı"}
+              {connectionStatus === "disconnected" && "Bağlantı kesildi"}
+            </span>
+          </div>
+          <button onClick={onLogout} className="logout-button" title="Çıkış">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            Çıkış
+          </button>
         </div>
       </div>
 
